@@ -280,7 +280,9 @@ foreach ($fileNames as $fileName) {
             unset($newLine['google_id']);
 
             if ($lineNumber % 10000 == 0) {
-                echo 'Loaded ' . $lineNumber . ' lines, sleep 10 seconds' . PHP_EOL;
+                echo 'Loaded ' . $lineNumber . ' lines, sleep 10 seconds, reconnect' . PHP_EOL;
+                unset($defaultDatabase);
+                $defaultDatabase = new SafeMySQL($defaultMySQLSettings['main']);
                 sleep(10);
             }
 
